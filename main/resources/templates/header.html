@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+    <style>
+        .hamburger {
+            width: 30px;
+            height: 25px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .hamburger div {
+            background: #4da0b0;
+            height: 4px;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        .menu {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background: #d39d38;
+            border-radius: 10px;
+            padding: 10px;
+            display: none;
+            z-index: 998;
+        }
+
+        .menu.active {
+            display: block;
+        }
+
+        .menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hamburger -->
+<div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<!-- Menu -->
+<nav class="menu" id="menu">
+    <a href="/exchange">ดูอัตราแลกเปลี่ยน</a>
+    <a href="/caluserinfo">วางแผนการเงิน</a>
+    <a href="/ourinfo">เกี่ยวกับเรา</a>
+    <a href="/logout">ออกจากระบบ</a>
+</nav>
+
+<!-- Script -->
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        menu.classList.toggle('active');
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>วางแผนการเงิน</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0; padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow:
+                    0 8px 32px 0 rgba(31, 38, 135, 0.37),
+                    0 0 0 1px rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px 40px 50px;
+            width: 400px;
+            max-width: 95vw;
+            color: #fff;
+            animation: fadeIn 0.8s ease forwards;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 600;
+            font-size: 2.4rem;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            background: rgba(255,255,255,0.3);
+            outline: none;
+            box-shadow: 0 0 8px 2px #ff416c;
+            color: #fff;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 14px 0;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.5);
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #ff4b2b, #ff416c);
+            box-shadow: 0 6px 25px rgba(255, 75, 43, 0.7);
+            transform: scale(1.05);
+        }
+
+        a.back-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: #fff;
+            text-decoration: underline;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        a.back-link:hover {
+            color: #ff416c;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        @media (max-width: 440px) {
+            .container {
+                padding: 30px 25px 40px;
+                width: 90vw;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            button {
+                font-size: 1rem;
+                padding: 12px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>ป้อนข้อมูลวางแผนการเงิน</h1>
+    <form th:action="@{/caluserinfo}" th:object="${userinfo}" method="post" autocomplete="off">
+        <input type="text" th:field="*{firstName}" placeholder="ชื่อจริง" required />
+        <input type="text" th:field="*{lastName}" placeholder="นามสกุล" required />
+        <input type="number" th:field="*{age}" placeholder="อายุ" required min="1" />
+        <input type="number" step="0.01" th:field="*{salary}" placeholder="เงินเดือน" required min="0" />
+        <input type="number" th:field="*{retirementAge}" placeholder="อายุเกษียณ" required min="1" />
+        <input type="number" step="0.01" th:field="*{desiredRetirementAmount}" placeholder="จำนวนเงินที่อยากมีหลังเกษียณ" required min="0" />
+        <button type="submit">บันทึก</button>
+    </form>
+    <a href="/home" class="back-link">กลับหน้าแรก</a>
+</div>
+</body>
+</html>

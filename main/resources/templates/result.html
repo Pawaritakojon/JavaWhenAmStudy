@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="th" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ผลการวางแผนการเงิน</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .result-container {
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            text-align: center;
+            text-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: #ffeaa7;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="result-container">
+    <h1>ผลการวางแผนการเงิน</h1>
+
+    <p>ชื่อ: <span th:text="${userInfo.firstName} + ' ' + ${userInfo.lastName}"></span></p>
+    <p>อายุปัจจุบัน: <span th:text="${userInfo.age}"></span> ปี</p>
+    <p>อายุเกษียณ: <span th:text="${userInfo.retirementAge}"></span> ปี</p>
+    <p>ระยะเวลาที่เหลือก่อนเกษียณ: <span th:text="${yearsToRetirement}"></span> ปี</p>
+
+    <hr>
+
+    <p>เงินเดือนที่กรอก: <span th:text="${formattedSalary}"></span> บาท</p>
+    <p>อัตราเงินเฟ้อปี 2024: <span th:text="${formattedInflationRate}"></span>%</p>
+    <p><strong>เงินเดือนหลังปรับเงินเฟ้อ:</strong> <span th:text="${formattedAdjustedSalary}"></span> บาท</p>
+
+    <hr>
+
+    <p>จำนวนเงินเป้าหมายตอนเกษียณ (ที่กรอก): <span th:text="${formattedDesiredAmount}"></span> บาท</p>
+    <p>จำนวนเงินเป้าหมายที่แท้จริงเมื่อถึงเกษียณ (หลังเงินเฟ้อ): <span th:text="${formattedFutureValue}"></span> บาท</p>
+    <p><strong>คุณควรเก็บเงินอย่างน้อยเดือนละ:</strong> <span th:text="${formattedMonthlySaving}"></span> บาท</p>
+
+    <a href="/home">← กลับหน้าแรก</a>
+</div>
+</body>
+</html>
